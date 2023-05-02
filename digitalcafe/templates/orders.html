@@ -1,0 +1,21 @@
+{% include "header.html" %}
+{% block content %}
+  <h1>My Orders</h1>
+  {% if orders %}
+    <ul>
+      {% for order in orders %}
+        <li>Order ID: {{ order["_id"] }}</li>
+        <li>Items:</li>
+        <ul>
+          {% for item in order["details"] %}
+            <li>{{ item["name"] }} - {{ item["qty"] }}</li>
+            <li>Price: {{ item["subtotal"] }}</li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No orders have been made yet.</p>
+  {% endif %}
+{% endblock %}
+{% include "footer.html" %}
